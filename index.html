@@ -1,145 +1,131 @@
-
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
- 
-    <title>Meida</title>
+    <title>HTML5 Video with JS synchronized cuepoints</title>
     <meta charset="utf-8">
 
-    <link rel="stylesheet" href="css/styles.css">
-   
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="c/main.css">
+    <script type="module" src="j/main.js" defer></script>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="js/main.js" defer></script>
+</head>
 
-    </head>
+<body>
+    <h1>Somebody That I Used To Know</h1>
 
-    <body>
+    <main id="container">
 
-       
-<main id="container">
-    
+        <section class="video">
 
-    <div id="reverence-isis">
-        
+            <video id="vid" width="352" controls>
+                <source src="videos/song.mp4" type="video/mp4">
+                
+                <track kind="captions" label="On" srclang="en" src="./captions/synergy.vtt" default>
 
-        <h1>
-            Reverence for Isis
-            </h1>
-    
-           <h2>
-           From The Golden Parade of Ancient Egyptian Royalty
-           </h2>
+                <!-- final fallback to text -->
+            
+                <p>Now and then I think of when we were together
+                    Like when you said you felt so happy you could die
+                    Told myself that you were right for me
+                    But felt so lonely in your company
+                    But that was love and it's an ache I still remember</p>
+                    
+                <p>You can get addicted to a certain kind of sadness
+                    Like resignation to the end, always the end
+                    So when we found that we could not make sense
+                    Well you said that we would still be friends
+                    But I'll admit that I was glad that it was over</p>
+                    
+                <p>But you didn't have to cut me off
+                    Make out like it never happened and that we were nothing
+                    And I don't even need your love
+                    But you treat me like a stranger and that feels so rough
+                    No you didn't have to stoop so low
+                    Have your friends collect your records and then change your number
+                    I guess that I don't need that though
+                    Now you're just somebody that I used to know
+                    
+                    Now you're just somebody that I used to know
+                    Now you're just somebody that I used to know</p>
+                    
+                <p>[Kimbra:]
+                    Now and then I think of all the times you screwed me over
+                    But had me believing it was always something that I'd done
+                    But I don't wanna live that way
+                    Reading into every word you say
+                    You said that you could let it go
+                    And I wouldn't catch you hung up on somebody that you used to know</p>
+                    
+                <p>[Gotye:]
+                    But you didn't have to cut me off
+                    Make out like it never happened and that we were nothing
+                    And I don't even need your love
+                    But you treat me like a stranger and that feels so rough
+                    No you didn't have to stoop so low
+                    Have your friends collect your records and then change your number
+                    I guess that I don't need that though
+                    Now you're just somebody that I used to know</p>
+                    
+                <p>Somebody
+                    (I used to know)
+                    Somebody
+                    (Now you're just somebody that I used to know)
+                    
+                    Somebody
+                    (I used to know)
+                    Somebody
+                    (Now you're just somebody that I used to know)
+                    
+                    (I used to know)
+                    (That I used to know)
+                    (I used to know)
+                    Somebody
+                </p>
 
-    <div id="noerror-song">
-
-    <iframe id="song-iframe" width="560" height="315" src="https://www.youtube.com/embed/uO3MB7jwA9E?si=Cox3uxJgpRMv1HIV&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <p class="song-caption">
-        The Hieroglyphic song performed at the Golden Parade of ancient Egyptian royalty in 2021.
-     </p>
-
-</div>
- 
-     
-      <!-- Fall back text- lyrics -->
-
-      <div class="fallback-song" >
-      <h1>Reverence for Isis — Lyrics</h1>
-
-       <p>
-        O people and gods above
-
-        She is the only lady
-        
-        Reverence for Eset (Isis)
-        
-        She gives birth to the day
-        
-        Reverence for Eset
-        
-        The lady of the west and the two lands
-        
-        Reverence for Eset
-        
-        She is the great eye of Ra in the provinces
-        
-        Reverence for Eset
-        
-        You offer the dear and precious for the king of Egypt
-        
-        Upper and lower
-        
-        O my only lady
-        
-        Reverence for thee
-    </p>
-    </div>
-</div>
- 
-<div id="golden-parade">
-
- 
- <h1>The Pharaohs' Golden Parade </h1>
-
- <div id="nerror-parade">
-    <iframe id="parade-iframe" width="560" height="315" src="https://www.youtube.com/embed/rpSHrM8sCrI?si=-6gwR27fzhcVKrXo&enablejsapi=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    
-    <p class="parade-caption">
-        The “Pharaohs’ Golden Parade” — a majestic procession through Cairo celebrating
-        Egypt’s ancient rulers as their royal mummies were moved to a new museum home (2021). 
-    </p>
-    
-</div>
-
- <div class="fallback-parade">  <!-- Fall back text- caption -->
-<p>
-    The “Pharaohs’ Golden Parade” was a historic event in Cairo, Egypt, where
-    twenty-two royal mummies—including those of Ramses II and Queen Hatshepsut—
-    were transferred from the Egyptian Museum in Tahrir Square to their new home
-    at the National Museum of Egyptian Civilization.  
-    The parade celebrated Egypt’s ancient heritage with golden chariots, music,
-    and artistic performances honoring the legacy of its pharaohs.
-</p>
-
-</div>
+            </video>
 
 
-</div>    
+            <div id="controls">
+                <form id="video_form">
+                    <fieldset>
+                        <input type="button" id="play_button" onclick="" value="Play">
+                        <input type="button" id="pause_button" onclick="" value="Pause">
+                        <input type="button" id="mute" onclick="" value="Mute">
+                        <input type="button" id="unmute" onclick="" value="Unmute">
+                        <input type="button" id="rewind" onclick="" value="Beginning">
+                        <input type="button" id="end" onclick="" value="End" >
+                        <input type="button" id="seek" onclick="" value="Go to Statistics">
+                    </fieldset>
+                    <fieldset>
+                        <select id="video_select">
+                            <option>Select a video to play...</option>
+                            <option value="assets/leverage-a-synergy.mp4">Leverage(mp4)</option>
+                            <option value="assets/leverage-a-synergy.ogv">Leverage(ogv)</option>
+                            <option value="assets/leverage-a-synergy.webm">Leverage(webm)</option>
+                        </select>
+                    </fieldset>
+                    <fieldset>
+                        <label>Currently, rewind only works in Safari
+                            <input type=button id="rw" onclick="" value="&lt; &lt;rewind">
+                        </label>
+                        <input type=button id="ff" onclick="" value="fast forward >>">
+                        <input type=button id="slo" onclick="" value="slo mo">
+                        <input type=button id="normal" onclick="" value="normal">
+                    </fieldset>
+                </form>
+            </div>
 
-       <div id="controls">
-        <form id="video_form">
-     
-            <fieldset>
+            <div class="pop hide">
+                <p>Test This!</p>
+            </div>
+        </section>
 
-                <input type=button id="ff" onclick="" value="fast forward >>">
-                <input type=button id="slo" onclick="" value="slo mo">
-                <input type=button id="normal" onclick="" value="normal">
+        <section class="col2">
+            <iframe id="web" src=""></iframe>
+        </section>
 
-            </fieldset>
-
-
-            <fieldset>
-
-                <select id="video-select">
-                    <option>Select a video to play</option>
-                    <option value="reverence-isis">Reverence for Isis</option>
-                    <option value="golden-parade">The Pharaohs' Golden Parade</option>
-                </select>
-
-            </fieldset>
-
-        </form>
-    </div>
-
-
- </main>
-<footer>
-   <p><em>This page was created as part of a course project for Mount Diablo College.  
-    It is a fictional work and not intended to represent any real event, person, or organization.</em></p> 
-</footer>
+    </main>
 
 </body>
 </html>
+
