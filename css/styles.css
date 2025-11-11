@@ -1,0 +1,86 @@
+
+html, body{
+    height: 100%;
+    width: 100%;
+}
+
+#container{
+    width: 100%;
+}
+main{
+    padding-bottom: 4em;
+}
+
+video{
+    width: 100%;
+    height: 600px;
+}
+
+h1, h2 {
+    text-align: center;
+    font-family: cursive;
+}
+
+h1{
+    font-size: 3em;
+}
+
+h2{
+    font-size: 2em;
+}
+
+.song-caption, .parade-caption {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: 1.7em;
+    margin-top: 2em auto;
+}
+#golden-parade {
+    display: none;
+}
+
+.fallback-song, .fallback-parade{
+    display: none;
+}
+
+iframe{
+  width: 100%;
+  height: 600px;
+}
+
+
+ #video-select,  #rw,  #end, #ff, #slo, #normal{
+  background-color: rgb(14, 14, 14);
+  color: rgb(249, 249, 249);
+  font-size: 20px;
+  padding: 1em 3em;
+  margin: .5em;
+}
+#video-select:hover,  
+#rw:hover,  
+#end:hover, 
+#ff:hover, 
+#slo:hover, 
+#normal:hover {
+    background-color: rgb(213, 213, 213);
+    color: rgb(14, 14, 14);
+}
+
+
+#video-select:active, #video-select:focus,
+#rw:active, #rw:focus,
+#end:active, #end:focus, 
+#ff:active, #ff:focus, 
+#slo:active, #slo:focus, 
+#normal:active, #normal:focus {
+    background-color: rgb(207, 152, 86);
+    color: rgb(0, 0, 0);
+}
+
+footer{
+    background-color: rgb(197, 197, 197);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: medium;
+    margin:0;
+    padding: 2em;
+}           
