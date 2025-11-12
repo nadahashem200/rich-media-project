@@ -12,7 +12,7 @@ main{
 }
 
 video{
-    width: 100%;
+    width: 50%;
     height: 600px;
 }
 
@@ -26,7 +26,11 @@ h1{
 }
 
 
- #video_select,  #rw,  #end, #ff, #slo, #normal{
+#video-select, 
+#language-select,
+#rw,  #end, #ff, #slo,
+#normal, #play, #pause, 
+#mute, #unmute, #seek{
   background-color: rgb(14, 14, 14);
   color: rgb(249, 249, 249);
   font-size: 20px;
@@ -34,23 +38,43 @@ h1{
   margin: .5em;
 }
 
-#video_select:hover,  
+
 #rw:hover,  
 #end:hover, 
 #ff:hover, 
 #slo:hover, 
-#normal:hover {
+#normal:hover,
+#mute:hover,
+#unmute:hover,
+#seek:hover,
+#play:hover,
+#pause:hover
+{
     background-color: rgb(213, 213, 213);
     color: rgb(14, 14, 14);
 }
 
 
-#video_select:active, #video-select:focus,
-#rw:active, #rw:focus,
-#end:active, #end:focus, 
-#ff:active, #ff:focus, 
-#slo:active, #slo:focus, 
-#normal:active, #normal:focus {
+#rw:active, 
+#rw:focus,
+#end:active, 
+#end:focus, 
+#ff:active, 
+#ff:focus, 
+#slo:active, 
+#slo:focus, 
+#normal:active, 
+#normal:focus,
+#play:active,
+#play:focus,
+#pause:active,
+#pause:focus,
+#mute:active,
+#mute:focus,
+#unmute:active,
+#unmute:focus,
+#seek:active,
+#seek:focus{
     background-color: rgb(207, 152, 86);
     color: rgb(0, 0, 0);
 }

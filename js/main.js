@@ -16,51 +16,136 @@ myCues = [
 ];
 
 
- // setup the cuepoint timer
+// setup the cuepoint timer
 cueTimer.setup("vid", myCues);
 
 
 
-    // create shortcut variables
+// create shortcut variables
 
-    const body = document.querySelector("body");
+const body = document.querySelector("body");
 
-    const vid = document.getElementById("vid");
-    const selectVid = document.getElementById("video-select");
-    const selectlang = document.getElementById("language-select");
+//Vid variables
+const vid = document.getElementById("vid");
+const selectVid = document.getElementById("video-select");
+
+//Track variables
+const selectLang = document.getElementById("language-select");
+
+//controls
+const playButton = document.getElementById("play");
+const pauseButton = document.getElementById("pause");
+const muteButton = document.getElementById("mute");
+const unmuteButton = document.getElementById("unmute");
+const endButton = document.getElementById("end");
+const seekButton = document.getElementById("seek");
+const fastForwardButton = document.getElementById("ff");
+const slowButton = document.getElementById("slo");
+const normalButton = document.getElementById("normal");
+const rewindButton = document.getElementById("rw");
+
     
-    let pop = document.querySelector(".pop");
-    let web = document.getElementById("web");
+let pop = document.querySelector(".pop");
+
+let web = document.getElementById("web");
 
 
 
-    //the custom callback functions to trigger when a cuepoint is hit.
-    //You can code up whatever behavior you need in your own callbacks
-    
-    function func1() {
-       body.style.backgroundColor = "#5C7A7A"; 
-       body.style.color = "white";
+//the custom callback functions to trigger when a cuepoint is hit.
+
+function func1() {
+
+    body.style.backgroundColor = "#5C7A7A"; 
+    body.style.color = "white";
+
     }
     
-    function func2() {
-        pop.innerHTML = "<p>We would still be friends?!</p>";
-        pop.classList.toggle("hide"); 
+
+function func2() {
+
+    pop.innerHTML = "<p>We would still be friends?!</p>";
+    pop.classList.toggle("hide"); 
     
-    // 4. Schedule the hiding event using setTimeout.
+    // Schedule the hiding event using setTimeout.
     setTimeout(() => {
-        // HIDE the element.
-        // Toggling 'hide' when it's absent (visible) will add it, making the element hidden.
-        pop.classList.toggle("hide");
+
+    pop.classList.toggle("hide");
+
     }, 2000); // 4000 milliseconds = 4 seconds duration
+
     }
 
-    function func3() {
-        body.style.backgroundColor = "#B22222"; 
-        body.style.color = "white";
+function func3() {
+
+    body.style.backgroundColor = "#B22222"; 
+    body.style.color = "white";
+
     }
 
-    function func4() {
-        web.src = "https://www.psychologytoday.com/us/blog/finding-love-the-scientific-take/202110/the-breakup-story";
+function func4() {
+
+    web.src = "https://www.psychologytoday.com/us/blog/finding-love-the-scientific-take/202110/the-breakup-story";
+
     }
+
+
+
+
+
+//Event listeners
+
+//select video
+selectVid.addEventListener('change', (e) => {
+    selectVideo(e, vid); 
+});
+//select language
+selectLang.addEventListener('change', (e) => {
+    selectLanguage(e, vid, e.target.value); 
+});
+//play
+playButton.addEventListener('click', () => {
+    playVideo(vid);
+});
+//pause
+pauseButton.addEventListener('click', () => {
+    pauseVideo(vid);
+});
+//mute
+muteButton.addEventListener('click', () => {
+    muteVideo(vid);
+});
+//unmute
+unmuteButton.addEventListener('click', () => {
+    unmuteVideo(vid);
+});
+//end
+endButton.addEventListener('click', () => {
+    onFinished(vid);
+});
+//seek
+seekButton.addEventListener('click', () => {
+    seekVideo(vid, 90);
+});
+//ff
+fastForwardButton.addEventListener('click', () => {
+    playRate(vid, 2);
+});
+//slow
+
+slowButton.addEventListener('click', () => {
+    playRate(vid, .5);
+});
+
+//normal
+normalButton.addEventListener('click', () => {
+    playRate(vid, 1);
+});
+
+
+
+//Rewind
+rewindButton.addEventListener('click', () => {
+    rewindVideo(vid, 10); 
+});
 
 }

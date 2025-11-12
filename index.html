@@ -18,12 +18,12 @@
         <section class="video">
 
             <video id="vid" controls>
-                <source src="videos/song.webm" type="video/mp4">
+                <source src="videos/song.webm" type="video/webm">
                 <source src="videos/song.mp4" type="video/mp4">
                
     
                 <track id="en" kind="captions" label="English" srclang="en" src="captions/lyrics.vtt" default>
-                <track id="es" kind="subtitles" label="French" srclang="es" src="captions/french.vtt">
+                <track id="fr" kind="subtitles" label="French" srclang="es" src="captions/french.vtt">
 				<track id="ar" kind="subtitles" label="عربي" srclang="ar" src="captions/arabic.vtt">
 
           
@@ -100,6 +100,12 @@
                         <input type="button" id="unmute" onclick="" value="Unmute">
                         <input type="button" id="end" onclick="" value="End" >
                         <input type="button" id="seek" onclick="" value="Go to Statistics">
+                        <input type=button id="ff" onclick="" value="fast forward >>">
+                        <input type=button id="slo" onclick="" value="slo mo">
+                        <input type=button id="normal" onclick="" value="normal">
+                        <label>
+                            <input type=button id="rw" onclick="" value="&lt; &lt;rewind">
+                        </label>
                     </fieldset>
                     
                     <fieldset>
@@ -112,21 +118,17 @@
                         </select>
 
                         <select id="language-select">
-                            <option>Select a Language...</option>
-                            <option id="english" value="captions/lyrics.vtt">English</option>
-                            <option id="arabic"  value="captions/arabic.vtt">عربي</option>
-                            <option id="french" value="captions/french.vtt">French</option>
+                            <option>Select subtitles...</option>
+                            <option id="english" value="en">English</option>
+                            <option id="arabic"  value="ar">عربي</option>
+                            <option id="french" value="fr">French</option>
           
                         </select>
 
                     </fieldset>
                     <fieldset>
-                        <label>
-                            <input type=button id="rw" onclick="" value="&lt; &lt;rewind">
-                        </label>
-                        <input type=button id="ff" onclick="" value="fast forward >>">
-                        <input type=button id="slo" onclick="" value="slo mo">
-                        <input type=button id="normal" onclick="" value="normal">
+                    
+                        
                     </fieldset>
                 </form>
             </div>

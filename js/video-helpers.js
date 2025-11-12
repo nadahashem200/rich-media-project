@@ -1,67 +1,73 @@
 
-
-	function selectVideo(e, clip) 
+//select video
+function selectVideo(e, vid) 
 	{
-		clip.src = e.target.value;
-		clip.load();
-		playVideo(clip);
+		vid.src = e.target.value;
+		vid.load();
+		playVideo(vid);
 	}
 
-	function selectTrack(e, clip, id) 
+//select a language
+function selectLanguage(e, vid, id) 
 	{
-		if(clip.textTracks.length > 0) {
+		if(vid.textTracks.length > 0) {
 			
-			//set all tracks inactive
-			for (let track of clip.textTracks) {
+		  //set all tracks inactive
+			for (let track of vid.textTracks) {
 				track.mode = 'hidden';
 				track.selected = false;
 			}
 
 			//turn on the selected track 
-			const theTrack = clip.textTracks.getTrackById(id);
+			const theTrack = vid.textTracks.getTrackById(id);
 			console.log(theTrack);
 			theTrack.selected = true;
 			theTrack.mode = 'showing';
 		}
 	}
 
-	function playVideo(clip) 
-	{
-		clip.play();
+//controls
+
+//play button
+	function playVideo(vid) {
+		vid.play();
+	}
+//pause button
+	function pauseVideo(vid){
+		vid.pause();
+	}
+//mute button
+	function muteVideo(vid){
+		vid.muted = true;
+	}
+//unmutebutton
+	function unmuteVideo(vid){
+		vid.muted = false;
 	}
 
-	function seekVideo(clip, position) 
+//end button
+	function onFinished(vid){
+		vid.currentTime = 0;
+	}
+
+//seek button
+	function seekVideo(vid, position) 
 	{
 		if(!position) position = 0;
-		clip.currentTime = position;
-		clip.play();
+		vid.currentTime = position;
+		vid.play();
 	}
 
-	function pauseVideo(clip) 
-	{
-		clip.pause();
-	}
+//ff, slow, normal
+function playRate(vid, rate){
+	vid.playbackRate = rate;
+}
 
-	function muteVid(clip) 
-	{
-		clip.muted = true;
-	}
 
-	function unmuteVid(clip) 
-	{
-		clip.muted = false;
-	}
+//Rewind
+function rewindVideo(vid, seconds) {
+    vid.currentTime = Math.max(0, vid.currentTime - seconds);
+}
 
-	function onFinished(clip) 
-	{
-		clip.currentTime = 0;
-	}
 
-	// rate can be a positive integer
-	// .5 is half speed, 1 is normal speed,
-	// 2 is double speed, etc.
-	//Only Safari supports negative values (backwards)
-	function playRate(clip, rate) 
-	{
-		clip.playbackRate = rate;
-	}
+	
