@@ -1,6 +1,11 @@
 
 import { cueTimer } from "./modules/cuepoints.js";
 
+import { 
+    selectVideo, selectLanguage, playVideo, pauseVideo, muteVideo, unmuteVideo, 
+    onFinished, seekVideo, playRate, rewindVideo 
+} from "./video-helpers.js";
+
 document.addEventListener("DOMContentLoaded", init)
 
 var myCues;
@@ -12,7 +17,7 @@ myCues = [
     { seconds: 64, callback: func2 }, //You can be addicted to.....
     { seconds: 95, callback: func3 }, //But you didn't have to stoop so low
     { seconds: 154, callback: func4 }, //Start of Kimbra's Verse
-    { seconds: 184, callback: func5 },  //Start of Final Outro
+    //{ seconds: 184, callback: func5 },  //Start of Final Outro
 ];
 
 
@@ -20,19 +25,21 @@ myCues = [
 cueTimer.setup("vid", myCues);
 
 
-
 // create shortcut variables
 
 const body = document.querySelector("body");
+let pop = document.querySelector(".pop");
+let web = document.getElementById("web");
+
 
 //Vid variables
 const vid = document.getElementById("vid");
 const selectVid = document.getElementById("video-select");
 
-//Track variables
+//Track variable
 const selectLang = document.getElementById("language-select");
 
-//controls
+//controls variables
 const playButton = document.getElementById("play");
 const pauseButton = document.getElementById("pause");
 const muteButton = document.getElementById("mute");
@@ -45,11 +52,6 @@ const normalButton = document.getElementById("normal");
 const rewindButton = document.getElementById("rw");
 
     
-let pop = document.querySelector(".pop");
-
-let web = document.getElementById("web");
-
-
 
 //the custom callback functions to trigger when a cuepoint is hit.
 
@@ -87,8 +89,6 @@ function func4() {
     web.src = "https://www.psychologytoday.com/us/blog/finding-love-the-scientific-take/202110/the-breakup-story";
 
     }
-
-
 
 
 
@@ -140,8 +140,6 @@ slowButton.addEventListener('click', () => {
 normalButton.addEventListener('click', () => {
     playRate(vid, 1);
 });
-
-
 
 //Rewind
 rewindButton.addEventListener('click', () => {

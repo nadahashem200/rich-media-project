@@ -1,6 +1,6 @@
 
 //select video
-function selectVideo(e, vid) 
+export function selectVideo(e, vid) 
 	{
 		vid.src = e.target.value;
 		vid.load();
@@ -8,7 +8,7 @@ function selectVideo(e, vid)
 	}
 
 //select a language
-function selectLanguage(e, vid, id) 
+export function selectLanguage(e, vid, id) 
 	{
 		if(vid.textTracks.length > 0) {
 			
@@ -29,29 +29,29 @@ function selectLanguage(e, vid, id)
 //controls
 
 //play button
-	function playVideo(vid) {
+export function playVideo(vid) {
 		vid.play();
 	}
 //pause button
-	function pauseVideo(vid){
+export function pauseVideo(vid){
 		vid.pause();
 	}
 //mute button
-	function muteVideo(vid){
+export function muteVideo(vid){
 		vid.muted = true;
 	}
 //unmutebutton
-	function unmuteVideo(vid){
+export function unmuteVideo(vid){
 		vid.muted = false;
 	}
 
 //end button
-	function onFinished(vid){
+export function onFinished(vid){
 		vid.currentTime = 0;
 	}
 
 //seek button
-	function seekVideo(vid, position) 
+export function seekVideo(vid, position) 
 	{
 		if(!position) position = 0;
 		vid.currentTime = position;
@@ -59,13 +59,13 @@ function selectLanguage(e, vid, id)
 	}
 
 //ff, slow, normal
-function playRate(vid, rate){
+export function playRate(vid, rate){
 	vid.playbackRate = rate;
 }
 
 
 //Rewind
-function rewindVideo(vid, seconds) {
+export function rewindVideo(vid, seconds) {
     vid.currentTime = Math.max(0, vid.currentTime - seconds);
 }
 

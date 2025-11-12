@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta charset="utf-8">
 
     <link rel="stylesheet" href="css/styles.css">
-    <script type="module" src="j/main.js" defer></script>
+    <script type="module" src="js/main.js" defer></script>
 
 </head>
 
@@ -23,8 +24,9 @@
                
     
                 <track id="en" kind="captions" label="English" srclang="en" src="captions/lyrics.vtt" default>
+                <track id="ar" kind="subtitles" label="عربي" srclang="ar" src="captions/arabic.vtt">
                 <track id="fr" kind="subtitles" label="French" srclang="es" src="captions/french.vtt">
-				<track id="ar" kind="subtitles" label="عربي" srclang="ar" src="captions/arabic.vtt">
+				
 
           
 
@@ -94,17 +96,17 @@
             <div id="controls">
                 <form id="video-form">
                     <fieldset>
-                        <input type="button" id="play" onclick="" value="Play">
-                        <input type="button" id="pause" onclick="" value="Pause">
-                        <input type="button" id="mute" onclick="" value="Mute">
-                        <input type="button" id="unmute" onclick="" value="Unmute">
-                        <input type="button" id="end" onclick="" value="End" >
-                        <input type="button" id="seek" onclick="" value="Go to Statistics">
-                        <input type=button id="ff" onclick="" value="fast forward >>">
-                        <input type=button id="slo" onclick="" value="slo mo">
-                        <input type=button id="normal" onclick="" value="normal">
+                        <input type="button" id="play" value="Play">
+                        <input type="button" id="pause" value="Pause">
+                        <input type="button" id="mute" value="Mute">
+                        <input type="button" id="unmute"  value="Unmute">
+                        <input type="button" id="end"  value="End" >
+                        <input type="button" id="seek" value="Go to Statistics">
+                        <input type=button id="ff"  value="fast forward >>">
+                        <input type=button id="slo" value="slo mo">
+                        <input type=button id="normal"value="normal">
                         <label>
-                            <input type=button id="rw" onclick="" value="&lt; &lt;rewind">
+                            <input type=button id="rw" value="&lt; &lt;rewind">
                         </label>
                     </fieldset>
                     

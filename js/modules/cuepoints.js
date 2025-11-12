@@ -1,8 +1,6 @@
 'use strict'
 
 
-
-
 const CueTimer = () => {
 
 	let previous_cue;	// flag to prevent callback being triggered more than once.
