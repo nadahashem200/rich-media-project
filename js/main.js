@@ -1,123 +1,155 @@
 
+import { cueTimer } from "./modules/cuepoints.js";
 
-document.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init)
 
-//declaring global variables outside init
-//for videos
-let songPlayer;
-let paradePlayer;
+var myCues;
 
-//for controls
-let currentPlayer; 
-let ff;
-let slo;
-let normal;
-let select;
-
-//for fallback
-let songFallback;
-let paradeFallback;
-let noErrorParade;
-let noErrorSong;
-let paradeContainer;
-let songContainer;
-
-
-//calling both parade and song players and setting the default player to match html structure
-function onYouTubeIframeAPIReady() {
-    
-    // Song Player
-    songPlayer = new YT.Player('song-iframe', {
-        events: {
-            'onError': onPlayerError 
-        }
-    });
-
-    // Parade Player
-    paradePlayer = new YT.Player('parade-iframe', {
-        events: {
-            'onError': onPlayerError 
-        }
-    });
-    
-    // Setting the default player
-}
-    
-
-// get fallback texts to work in case of an error
-function onPlayerError (e) {
-    if (e.target === songPlayer) {
-    songFallback.style.display = 'block'
-    noErrorSong.style.display= 'none';
-    paradeContainer.style.display= 'none';
-    }
-
-    if (e.target === paradePlayer) {
-        paradeFallback.style.display = 'block'
-        noErrorParade.style.display= 'none';
-        songContainer.style.display= 'none'; 
-    };
-}
-
-
-//start of local functions and variables
 function init() {
-    
+ // create a playlist of functions to call at certain moments in the video.
+myCues = [
+    { seconds: 20, callback: func1 }, //Start of the 1st verse
+    { seconds: 64, callback: func2 }, //You can be addicted to.....
+    { seconds: 95, callback: func3 }, //But you didn't have to stoop so low
+    { seconds: 154, callback: func4 }, //Start of Kimbra's Verse
+    { seconds: 184, callback: func5 }  //Start of Final Outro
+];
 
- //declaring local variables and assigning values to them
-    const song = document.getElementById("song-iframe");
-    const parade= document.getElementById("parade-iframe");
+
+ // setup the cuepoint timer
+cueTimer.setup("vid", myCues);
+
+
+
+
+    // create shortcut variables
+    const vid = document.querySelector("#vid");
+    const selectVid = document.querySelector("#video_select");
+    const selectTxt = document.querySelector("#text-track");
+    const display = document.getElementById("transcript");
+    const transcript_en = document.getElementById("transcript-en");
+    const transcript_es = document.getElementById("transcript-es");
+    const transcript_fr = document.getElementById("transcript-fr");
+    const showHide = document.getElementById("show-hide");
+
+    // initialize video select dropdown behavior
+    selectVid.addEventListener("change", (e) => {
  
-    ff = document.getElementById("ff");
-    slo = document.getElementById("slo");
-    normal = document.getElementById("normal");
-    select = document.getElementById("video-select");
+        // depending on which video is selected, change the cues
+        // and change the captions.
+        if (e.target.value == 'assets/leverage-a-synergy.mp4') {
+            
+            // choose the english caption text
+            selectTrack(null, vid, 'en');
 
-//assigning values to global variables
+            // reset the cues playlist
+            myCues = [
+                { seconds: 2, callback: func1 },
+                { seconds: 9, callback: func2 },
+                { seconds: 15, callback: func3 },
+                { seconds: 25, callback: func6 },
+                { seconds: 37, callback: func4 },
+                { seconds: 50, callback: func5 }
+            ];
+            // recreate the cue timer
+            cueTimer.setup("vid", myCues);
 
-   //assigning value to the global noerror variables 
-    noErrorSong= document.getElementById("noerror-song");
-    noErrorParade= document.getElementById("noerror-parade");
+        } else if(e.target.value == 'assets/bunny.mp4') {
+            // if bunny video, empty the myCues array
+            // and change the caption texts
+            myCues.splice(0, myCues.length);
+            selectTrack(null, vid, 'en-bunny');
+        }
+        // finally, swap the video to play
+        selectVideo(e, vid);
+    });
 
-  //assigning value to the global containers variables 
-    songContainer= document.getElementById("reverence-isis");
-    paradeContainer= document.getElementById("golden-parade");
+    // initialize video captions dropdown behavior
+    selectTxt.addEventListener("change", (e) => {
+        const id = e.target.value;
+        selectTrack(e, vid, id);
+    });
+
+    // initialize text transcript display (english)
+    transcript_en.addEventListener(
+        "click",
+        function (e) {
+            e.preventDefault();
+            webvttTranscript("captions/synergy.vtt", display);
+        });
+
+    // initialize text transcript display (Spanish)
+    transcript_es.addEventListener(
+        "click",
+        function (e) {
+            e.preventDefault();
+            webvttTranscript("subtitles/spanish.vtt", display);
+        });
+
+    // initialize text transcript display (French)
+    transcript_fr.addEventListener(
+        "click",
+        function (e) {
+            e.preventDefault();
+            webvttTranscript("subtitles/french.vtt", display);
+        });
+
+        
+    showHide.addEventListener(
+        "click",
+        function (e) {
+            e.preventDefault();
+            webvttTranscript("subtitles/french.vtt", display);
+            if (e.target.innerHTML == "Show Transcript") {
+                e.target.innerHTML = "Hide Transcript";
+                display.style.display = "block";
+            } else {
+                e.target.innerHTML = "Show Transcript";
+                display.style.display = "none";
+            }
+        });
+}
 
 
-    //assigning value to the global fallback variables 
-    songFallback = document.querySelector('.fallback-song');
-    paradeFallback = document.querySelector('.fallback-parade');   
 
+//the custom callback functions to trigger when a cuepoint is hit.
+//You can code up whatever behavior you need in your own callbacks
 
-//Functions
+function func1() {
+    document.querySelector("#vid").style = "outline : 10px solid red";
+}
 
+function func2() {
+    let pop = document.querySelector(".pop");
+    pop.innerHTML = "<p>Ohh Snap!</p>";
+    document.querySelector(".pop").classList.toggle("hide");
+    setTimeout(() => {
+        document.querySelector(".pop").classList.toggle("hide");
+    }, 2000);
+}
 
-//select a video
-select.addEventListener('change', function() {
-    if (this.value === 'reverence-isis') {
-        currentPlayer = songPlayer; 
-        songContainer.style.display = 'block';
-        paradeContainer.style.display= 'none';
-    }
+function func3() {
+    const pop = document.querySelector(".pop");
+    pop.innerHTML = "<p>E=MC<sup>2</sup> is NOT Statistical Data!!</p>";
+    pop.classList.toggle("hide");
+    setTimeout(() => {
+        document.querySelector(".pop").classList.toggle("hide");
+    }, 2000);
+    document.querySelector("#vid").style = "outline: 0px solid red";
+    document.querySelector("#web").src =
+        "https://en.wikipedia.org/wiki/Albert_Einstein";
+}
 
-    else { currentPlayer = paradePlayer; 
-           songContainer.style.display = 'none';
-           paradeContainer.style.display= 'block';
-    }      
-});
+function func4() {
+    document.querySelector("#web").src =
+        "https://en.wikipedia.org/wiki/Paradigm_shift";
+}
 
-//controls
+function func5() {
+    document.querySelector("#web").src =
+        "https://en.wikipedia.org/wiki/Domestic_violence";
+}
 
-ff.addEventListener("click", (e) => {
-currentPlayer.setPlaybackRate(2);
-});
-
-slo.addEventListener("click", (e) => {
-currentPlayer.setPlaybackRate(0.5);
-});
-
-normal.addEventListener("click", (e) => {
-currentPlayer.setPlaybackRate(1);
-
-});
+function func6() {
+    document.querySelector("#web").src = "images/koljr-banana-splits-400.jpg";
 }

@@ -18,9 +18,14 @@
         <section class="video">
 
             <video id="vid" width="352" controls>
+                <source src="videos/song.webm" type="video/mp4">
                 <source src="videos/song.mp4" type="video/mp4">
-                
-                <track kind="captions" label="On" srclang="en" src="captions/lyrics.vtt" default>
+               
+
+                <track id="en" kind="captions" label="English" srclang="en" src="captions/lyrics.vtt" default>
+                <track id="es" kind="subtitles" label="French" srclang="es" src="captions/french.vtt">
+				<track id="ar" kind="subtitles" label="عربي" srclang="ar" src="captions/arabic.vtt">
+
 
                 <!-- final fallback to text -->
             
@@ -97,15 +102,25 @@
                         <input type="button" id="seek" onclick="" value="Go to Statistics">
                     </fieldset>
                     <fieldset>
+
                         <select id="video_select">
                             <option>Select a video to play...</option>
-                            <option value="assets/leverage-a-synergy.mp4">Leverage(mp4)</option>
-                            <option value="assets/leverage-a-synergy.ogv">Leverage(ogv)</option>
-                            <option value="assets/leverage-a-synergy.webm">Leverage(webm)</option>
+                            <option value="videos/song.webm">Somebody That I Used To Know(webm)</option>
+                            <option value="videos/song.mp4">Somebody That I Used To Know(mp4)</option>
+          
                         </select>
+
+                        <select id="language_select">
+                            <option>Select a Language...</option>
+                            <option value="captions/lyrics.vtt">English</option>
+                            <option value="captions/arabic.vtt">عربي</option>
+                            <option value="captions/french.vtt">French</option>
+          
+                        </select>
+
                     </fieldset>
                     <fieldset>
-                        <label>Currently, rewind only works in Safari
+                        <label>
                             <input type=button id="rw" onclick="" value="&lt; &lt;rewind">
                         </label>
                         <input type=button id="ff" onclick="" value="fast forward >>">
@@ -120,8 +135,8 @@
             </div>
         </section>
 
-        <section class="col2">
-            <iframe id="web" src=""></iframe>
+        <section class="article">
+            <iframe id="web" src="https://www.psychologytoday.com/us/blog/finding-love-the-scientific-take/202110/the-breakup-story"></iframe>
         </section>
 
     </main>
