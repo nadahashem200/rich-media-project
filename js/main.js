@@ -36,6 +36,8 @@ let web = document.getElementById("web");
 const vid = document.getElementById("vid");
 const selectVid = document.getElementById("video-select");
 
+const articleBox = document.querySelector(".article-box");
+
 //Track variable
 const selectLang = document.getElementById("language-select");
 
@@ -57,10 +59,9 @@ const rewindButton = document.getElementById("rw");
 
 function func1() {
 
-    body.style.backgroundColor = "#5C7A7A"; 
-    body.style.color = "white";
-
-    }
+    body.style.backgroundColor = '#5C7A7A'; 
+    body.style.color = 'white';
+}
     
 
 function func2() {
@@ -73,24 +74,44 @@ function func2() {
 
     pop.classList.toggle("hide");
 
-    }, 2000); // 4000 milliseconds = 4 seconds duration
+    }, 5000); // 5000 milliseconds = 5 seconds duration
 
+    pop.style.backgroundColor = 'white';
+    pop.style.color = 'black';
+    pop.style.fontSize = '40px';
+    pop.style.padding = '20px';
+    pop.style.position = 'fixed';
+    pop.style.top = '300px';
+    pop.style.right = '20%';
     }
+
 
 function func3() {
 
-    body.style.backgroundColor = "#B22222"; 
-    body.style.color = "white";
-
+    body.style.backgroundColor = '#B22222'; 
+    body.style.color = 'white';
     }
 
 function func4() {
+    body.style.backgroundColor = 'beige'; 
+    body.style.color = 'black';
 
-    web.src = "https://www.psychologytoday.com/us/blog/finding-love-the-scientific-take/202110/the-breakup-story";
+    articleBox.classList.remove("hide");
 
-    }
+    setTimeout(() => {
 
+       articleBox.classList.add("hide");
+    
+        }, 20000); // 20000 milliseconds = 20 seconds duration
+    
+    web.src = "https://en.wikipedia.org/wiki/Breakup";
 
+    articleBox.style.position = 'fixed';
+    articleBox.style.width = '30%';
+    articleBox.style.top = '50px';
+    articleBox.style.right = '10%';
+    articleBox.style.border = '1px solid black';
+}
 
 //Event listeners
 
@@ -147,3 +168,4 @@ rewindButton.addEventListener('click', () => {
 });
 
 }
+
