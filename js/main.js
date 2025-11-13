@@ -17,7 +17,6 @@ myCues = [
     { seconds: 64, callback: func2 }, //You can be addicted to.....
     { seconds: 95, callback: func3 }, //But you didn't have to stoop so low
     { seconds: 154, callback: func4 }, //Start of Kimbra's Verse
-    //{ seconds: 184, callback: func5 },  //Start of Final Outro
 ];
 
 
@@ -28,6 +27,7 @@ cueTimer.setup("vid", myCues);
 // create shortcut variables
 
 const body = document.querySelector("body");
+
 let pop = document.querySelector(".pop");
 let web = document.getElementById("web");
 
@@ -78,12 +78,24 @@ function func2() {
 
     pop.style.backgroundColor = 'white';
     pop.style.color = 'black';
+
+    if (window.innerWidth > 760) {
     pop.style.fontSize = '40px';
     pop.style.padding = '20px';
     pop.style.position = 'fixed';
     pop.style.top = '300px';
-    pop.style.right = '20%';
+    pop.style.right = '10px';
     }
+//Mobile layout
+
+  else {
+        pop.style.fontSize = '20px';
+        pop.style.padding = '10px';
+        pop.style.position = 'fixed';
+        pop.style.zIndex = '1000';
+        pop.style.top = '100px';
+  }
+}
 
 
 function func3() {
@@ -95,30 +107,68 @@ function func3() {
 function func4() {
     body.style.backgroundColor = 'beige'; 
     body.style.color = 'black';
-
+      
     articleBox.classList.remove("hide");
 
     setTimeout(() => {
 
-       articleBox.classList.add("hide");
-    
-        }, 20000); // 20000 milliseconds = 20 seconds duration
-    
+          articleBox.classList.add("hide");
+        }, 20000); // 20 seconds
+      
     web.src = "https://en.wikipedia.org/wiki/Breakup";
+       
 
-    articleBox.style.position = 'fixed';
-    articleBox.style.width = '30%';
-    articleBox.style.top = '50px';
-    articleBox.style.right = '10%';
-    articleBox.style.border = '1px solid black';
-}
+          if (window.innerWidth > 760) {
+            articleBox.style.position = 'fixed';
+            articleBox.style.width = '30%';
+            articleBox.style.top = '50px';
+            articleBox.style.right = '10%';
+            articleBox.style.border = '1px solid black';
+
+          } else {
+            articleBox.style.position = 'static';
+            articleBox.style.width = '100%';
+            articleBox.style.top = 'auto';
+            articleBox.style.border = 'none';
+          }
+       
+      }
+      
+
 
 //Event listeners
 
+
 //select video
+
 selectVid.addEventListener('change', (e) => {
-    selectVideo(e, vid); 
+    // Check which video is selected
+    if (e.target.value === 'videos/song.webm') {
+
+        selectLanguage(null, vid, 'en'); // enable English captions
+
+    // reset the cues playlist
+        myCues = [
+            { seconds: 20, callback: func1 },
+            { seconds: 64, callback: func2 },
+            { seconds: 95, callback: func3 },
+            { seconds: 154, callback: func4 },
+        ];
+
+    // recreate the cue timer
+        cueTimer.setup("vid", myCues);
+
+    } else if (e.target.value === 'videos/song.mp4') {
+
+    // remove all cues 
+        myCues = [];
+        selectLanguage(null, vid, 'en');
+    }
+
+    // Switch the video source
+    selectVideo(e, vid);
 });
+
 //select language
 selectLang.addEventListener('change', (e) => {
     selectLanguage(e, vid, e.target.value); 
@@ -168,4 +218,3 @@ rewindButton.addEventListener('click', () => {
 });
 
 }
-
